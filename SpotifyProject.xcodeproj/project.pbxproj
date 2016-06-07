@@ -14,6 +14,9 @@
 		AFDC2A931D06746000B3665D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDC2A911D06746000B3665D /* LaunchScreen.storyboard */; };
 		AFDC2A9E1D06746000B3665D /* SpotifyProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2A9D1D06746000B3665D /* SpotifyProjectTests.swift */; };
 		AFDC2AA91D06746000B3665D /* SpotifyProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2AA81D06746000B3665D /* SpotifyProjectUITests.swift */; };
+		AFDC2AB71D06762500B3665D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2AB61D06762500B3665D /* CustomCell.swift */; };
+		AFDC2AB91D06843700B3665D /* SAArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2AB81D06843700B3665D /* SAArtist.swift */; };
+		AFDC2ABB1D06854D00B3665D /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2ABA1D06854D00B3665D /* WebServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		AFDC2AA41D06746000B3665D /* SpotifyProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFDC2AA81D06746000B3665D /* SpotifyProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyProjectUITests.swift; sourceTree = "<group>"; };
 		AFDC2AAA1D06746000B3665D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFDC2AB61D06762500B3665D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		AFDC2AB81D06843700B3665D /* SAArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SAArtist.swift; path = ../SAArtist.swift; sourceTree = "<group>"; };
+		AFDC2ABA1D06854D00B3665D /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebServices.swift; path = ../WebServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +103,12 @@
 		AFDC2A871D06746000B3665D /* SpotifyProject */ = {
 			isa = PBXGroup;
 			children = (
+				AFDC2ABA1D06854D00B3665D /* WebServices.swift */,
+				AFDC2AB81D06843700B3665D /* SAArtist.swift */,
 				AFDC2A881D06746000B3665D /* AppDelegate.swift */,
 				AFDC2A8A1D06746000B3665D /* ViewController.swift */,
 				AFDC2A8C1D06746000B3665D /* Main.storyboard */,
+				AFDC2AB61D06762500B3665D /* CustomCell.swift */,
 				AFDC2A8F1D06746000B3665D /* Assets.xcassets */,
 				AFDC2A911D06746000B3665D /* LaunchScreen.storyboard */,
 				AFDC2A941D06746000B3665D /* Info.plist */,
@@ -256,7 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFDC2AB91D06843700B3665D /* SAArtist.swift in Sources */,
+				AFDC2ABB1D06854D00B3665D /* WebServices.swift in Sources */,
 				AFDC2A8B1D06746000B3665D /* ViewController.swift in Sources */,
+				AFDC2AB71D06762500B3665D /* CustomCell.swift in Sources */,
 				AFDC2A891D06746000B3665D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
