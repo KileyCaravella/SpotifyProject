@@ -52,7 +52,7 @@
 		AFDC2AAA1D06746000B3665D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFDC2AB61D06762500B3665D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		AFDC2AB81D06843700B3665D /* SAArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SAArtist.swift; path = ../SAArtist.swift; sourceTree = "<group>"; };
-		AFDC2ABA1D06854D00B3665D /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebServices.swift; path = ../WebServices.swift; sourceTree = "<group>"; };
+		AFDC2ABA1D06854D00B3665D /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.swift; name = WebServices.swift; path = ../WebServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,6 +496,7 @@
 				AFDC2AAF1D06746000B3665D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFDC2AB01D06746000B3665D /* Build configuration list for PBXNativeTarget "SpotifyProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +505,7 @@
 				AFDC2AB21D06746000B3665D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFDC2AB31D06746000B3665D /* Build configuration list for PBXNativeTarget "SpotifyProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +514,7 @@
 				AFDC2AB51D06746000B3665D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

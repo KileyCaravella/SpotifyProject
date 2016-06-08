@@ -7,42 +7,64 @@
 //
 
 import UIKit
+import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
 
     @IBOutlet var tableView: UITableView!
-    
-    static var artists = []
-    
-    //**This will be pulled from the API**//
-    func pullFromWebService {
-        let artists = [WebServices.getSeveralArtists()]
-    }
-    
+    var artists: NSArray = []
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        super.viewDidLoad();
+        self.artists = WebServices().getSeveralArtists("a")
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return artists.count
+        if searchController.active && searchController.searchBar.text != "" {
+            return self.artists.count
+        }
+        else {
+            return self.artists.count
+        }
     }
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomCell
-        
-        cell.artistName.text = artists[indexPath.row] as? String
-        
+        if searchController.active && searchController.searchBar.text != "" {
+            cell.artistName.text! = artists[indexPath.row] as! String
+        }
+        else {
+            cell.artistName.text! = artists[indexPath.row] as! String
+        }
         return cell
     }
-
-
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        print("This is happening")
+        if searchController.searchBar.text != "" {
+            self.artists = WebServices().getSeveralArtists(searchText)
+            tableView.reloadData()
+        }
+    }
+        
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+        print(";", searchController.searchBar.text)
+    }
 }
+
 

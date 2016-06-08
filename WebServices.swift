@@ -9,31 +9,41 @@
 import Foundation
 
 class WebServices: NSObject {
-    let baseURL: String = "https://api.spotify.com"
-    var jsonResult: NSDictionary = []
+     let baseURL: String = "https://api.spotify.com/v1/search?q="
+     var jsonResult: NSDictionary = [:]
+     var artistNames = []
+     var boolForTime:Bool! = false
     
-    func getSeveralArtists() -> String {
-        let url = baseURL + "/v1/artists?ids={ids}"
+     func getSeveralArtists(searchArtists: String!) -> NSArray {
+        
+          //Modifying String if there are spaces
+          let searchArtists = searchArtists.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+          
+          let url = baseURL + searchArtists + "&type=artist&offset=20&limit=50" //search string goes where empty string currently is
         let request : NSMutableURLRequest = NSMutableURLRequest()
         request.URL = NSURL(string: url)
+        guard request.URL != nil else {
+            print("URL not valid: \(url)")
+            return []
+        }
+        
         request.HTTPMethod = "GET"
-
+        print("Getting ", searchArtists)
+          
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string:url)!) { data, response, error in
-            jsonResult = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+            do {
+                self.jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+               self.artistNames = self.jsonResult.valueForKey("artists")!.valueForKey("items")!.valueForKey("name")! as! NSArray
+               self.boolForTime = true
+            } catch {
+                print ("failure")
+            }
         }.resume()
-        
-        let artistName:String = [jsonResult.]
-        
-//        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler: {(response:NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-//            var error: AutoreleasingUnsafeMutablePointer<NSError?> = nil
-//            let jsonResult: NSDictionary! = NSJSONSerialization.JSONObjectWithData((data?)!, options: NSJSONReadingOptions.MutableContainers, error: error)as? NSDictionary
-//            
-//            if (jsonResult != nil) {
-//                //process jsonResult
-//                //let artistNames:String = [jsonResult.]
-//            } else {
-//                print ("errorWithFile")
-//            }
-//        })
+          while(!self.boolForTime) {
+              NSThread.sleepForTimeInterval(0.0001)
+          }
+          self.artistNames = self.artistNames.sort{$0.localizedCaseInsensitiveCompare($1 as! String) == NSComparisonResult.OrderedAscending}
+     return self.artistNames
     }
+
 }
