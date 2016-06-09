@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SASearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class SASearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, communicationControllerArtist {
 
     @IBOutlet var tableView: UITableView!
     var artists: NSArray = []
@@ -24,7 +24,7 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.tableHeaderView = searchController.searchBar
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -39,7 +39,7 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomSearchCell
         if searchController.active && searchController.searchBar.text != "" {
             cell.artistName.text! = artists[indexPath.row] as! String
         }
@@ -52,17 +52,14 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let popup : SAArtistViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SAArtistViewController") as! SAArtistViewController
-        let navigationController = UINavigationController(rootViewController: popup)
-        navigationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-    
-        let SAArtistDestination = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("SAArtistViewController") as! SAArtistViewController
-        let currentCell = tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! CustomCell
+        let SAArtistDestination : SAArtistViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SAArtistViewController") as! SAArtistViewController
+        
+        let currentCell = tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! CustomSearchCell
         let textFromCell = currentCell.artistName.text!
             
         //Getting the artist's dictionary value to send to VC
         for case let dictionaryValue in self.artistDictionaries {
-            if (dictionaryValue.valueForKey("name") as! String == textFromCell) {
+            if dictionaryValue.valueForKey("name") as! String == textFromCell {
                 SAArtistDestination.artistDictionary = dictionaryValue as! NSDictionary
                 break
             }
@@ -71,14 +68,20 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
         //need to stop the search controller in order to present the other view
         searchController.searchBar.endEditing(true)
         searchController.active = false
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        
+        SAArtistDestination.delegate = self
+        self.presentViewController(SAArtistDestination, animated: true, completion: nil)
+    }
+    
+    func backFromArtist() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
 
     //When searching for artist name
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         if searchController.searchBar.text != "" && searchController.active {
             SARequestManager().searchArtists(searchController.searchBar.text,  completion: {artistNames, artistWebServiceDictionaries in
-                
                 self.artists = artistNames
                 self.tableView.reloadData()
                 self.artistDictionaries = artistWebServiceDictionaries

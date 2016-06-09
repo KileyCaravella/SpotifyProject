@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomCell: UITableViewCell {
+class CustomSearchCell: UITableViewCell {
 
     @IBOutlet weak var artistName: UILabel!
     

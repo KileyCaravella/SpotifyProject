@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF36B3091D0924AE00B6E647 /* CustomSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF36B3081D0924AE00B6E647 /* CustomSongCell.swift */; };
 		AF5CC7CE1D08678D00C312E9 /* SAArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CC7CD1D08678D00C312E9 /* SAArtistViewController.swift */; };
+		AF7215C61D09A43300227BD8 /* noPhotoAvailableImg.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7215C51D09A43300227BD8 /* noPhotoAvailableImg.png */; };
 		AFDC2A891D06746000B3665D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2A881D06746000B3665D /* AppDelegate.swift */; };
 		AFDC2A8B1D06746000B3665D /* SASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2A8A1D06746000B3665D /* SASearchViewController.swift */; };
 		AFDC2A8E1D06746000B3665D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDC2A8C1D06746000B3665D /* Main.storyboard */; };
@@ -15,8 +17,8 @@
 		AFDC2A931D06746000B3665D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDC2A911D06746000B3665D /* LaunchScreen.storyboard */; };
 		AFDC2A9E1D06746000B3665D /* SpotifyProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2A9D1D06746000B3665D /* SpotifyProjectTests.swift */; };
 		AFDC2AA91D06746000B3665D /* SpotifyProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2AA81D06746000B3665D /* SpotifyProjectUITests.swift */; };
-		AFDC2AB71D06762500B3665D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2AB61D06762500B3665D /* CustomCell.swift */; };
-		AFDC2ABB1D06854D00B3665D /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2ABA1D06854D00B3665D /* WebServices.swift */; };
+		AFDC2AB71D06762500B3665D /* CustomSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2AB61D06762500B3665D /* CustomSearchCell.swift */; };
+		AFDC2ABB1D06854D00B3665D /* SARequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC2ABA1D06854D00B3665D /* SARequestManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF36B3081D0924AE00B6E647 /* CustomSongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSongCell.swift; sourceTree = "<group>"; };
 		AF5CC7CD1D08678D00C312E9 /* SAArtistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAArtistViewController.swift; sourceTree = "<group>"; };
+		AF7215C51D09A43300227BD8 /* noPhotoAvailableImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noPhotoAvailableImg.png; path = ../../../Desktop/noPhotoAvailableImg.png; sourceTree = "<group>"; };
 		AFDC2A851D06746000B3665D /* SpotifyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFDC2A881D06746000B3665D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFDC2A8A1D06746000B3665D /* SASearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SASearchViewController.swift; sourceTree = "<group>"; };
@@ -51,8 +55,8 @@
 		AFDC2AA41D06746000B3665D /* SpotifyProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFDC2AA81D06746000B3665D /* SpotifyProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyProjectUITests.swift; sourceTree = "<group>"; };
 		AFDC2AAA1D06746000B3665D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AFDC2AB61D06762500B3665D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		AFDC2ABA1D06854D00B3665D /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.swift; name = WebServices.swift; path = ../WebServices.swift; sourceTree = "<group>"; };
+		AFDC2AB61D06762500B3665D /* CustomSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchCell.swift; sourceTree = "<group>"; };
+		AFDC2ABA1D06854D00B3665D /* SARequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.swift; name = SARequestManager.swift; path = ../SARequestManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +87,21 @@
 		AF5CC7CF1D0867AE00C312E9 /* SpotifyProjectExtras */ = {
 			isa = PBXGroup;
 			children = (
-				AFDC2AB61D06762500B3665D /* CustomCell.swift */,
+				AF7215C71D09A43800227BD8 /* Assets */,
+				AFDC2AB61D06762500B3665D /* CustomSearchCell.swift */,
+				AF36B3081D0924AE00B6E647 /* CustomSongCell.swift */,
 				AFDC2A881D06746000B3665D /* AppDelegate.swift */,
-				AFDC2ABA1D06854D00B3665D /* WebServices.swift */,
+				AFDC2ABA1D06854D00B3665D /* SARequestManager.swift */,
 			);
 			name = SpotifyProjectExtras;
+			sourceTree = "<group>";
+		};
+		AF7215C71D09A43800227BD8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				AF7215C51D09A43300227BD8 /* noPhotoAvailableImg.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		AFDC2A7C1D06746000B3665D = {
@@ -246,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF7215C61D09A43300227BD8 /* noPhotoAvailableImg.png in Resources */,
 				AFDC2A931D06746000B3665D /* LaunchScreen.storyboard in Resources */,
 				AFDC2A901D06746000B3665D /* Assets.xcassets in Resources */,
 				AFDC2A8E1D06746000B3665D /* Main.storyboard in Resources */,
@@ -273,11 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFDC2ABB1D06854D00B3665D /* WebServices.swift in Sources */,
+				AFDC2ABB1D06854D00B3665D /* SARequestManager.swift in Sources */,
 				AFDC2A8B1D06746000B3665D /* SASearchViewController.swift in Sources */,
-				AFDC2AB71D06762500B3665D /* CustomCell.swift in Sources */,
+				AFDC2AB71D06762500B3665D /* CustomSearchCell.swift in Sources */,
 				AFDC2A891D06746000B3665D /* AppDelegate.swift in Sources */,
 				AF5CC7CE1D08678D00C312E9 /* SAArtistViewController.swift in Sources */,
+				AF36B3091D0924AE00B6E647 /* CustomSongCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
