@@ -75,7 +75,6 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func backFromArtist() {
         self.dismissViewControllerAnimated(true, completion: nil)
-        
     }
 
     //When searching for artist name

@@ -28,6 +28,36 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
         backBtn.addTarget(self, action: #selector(goBackToSearchVC), forControlEvents: .TouchUpInside)
         self.artistName.text = String(artistDictionary.valueForKey("name")!)
         chooseProfileImage(self.artistDictionary.valueForKey("images") as! NSArray)
+        createBlurOnBackground()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("HAI!")
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("customSongCell", forIndexPath: indexPath) as! CustomSongCell
+        
+        cell.albumName.text! = "albumName"
+        cell.songName.text! = "songName"
+        cell.orderForTopTracks.text! = String(indexPath.row)
+        
+        return cell
+    }
+    
+    func goBackToSearchVC() {
+        self.delegate?.backFromArtist()
+    }
+    
+    func createBlurOnBackground () {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.addSubview(blurEffectView)
+        view.sendSubviewToBack(blurEffectView)
+        view.sendSubviewToBack(self.artistBackgroundImg)
     }
     
     func chooseProfileImage(imageArray: NSArray) {
@@ -50,26 +80,6 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
                 self.artistBackgroundImg.layer.backgroundColor = UIColor.blackColor().CGColor
             }
         }
-    }
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("HAI!")
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("customSongCell", forIndexPath: indexPath) as! CustomSongCell
-        
-        cell.albumName.text! = "albumName"
-        cell.songName.text! = "songName"
-        cell.orderForTopTracks.text! = String(indexPath.row)
-        
-        return cell
-    }
-    
-    func goBackToSearchVC() {
-        self.delegate?.backFromArtist()
     }
     
     override func didReceiveMemoryWarning() {
