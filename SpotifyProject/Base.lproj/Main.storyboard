@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--SA Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpotifyProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SASearchViewController" id="BYZ-38-t0r" userLabel="SA Search View Controller" customClass="SASearchViewController" customModule="SpotifyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -19,15 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="35" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iub-Bf-ohP">
-                                <rect key="frame" x="20" y="20" width="560" height="560"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="35" id="bnP-OJ-f01" customClass="CustomCell" customModule="SpotifyProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="35"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bnP-OJ-f01" id="tOX-XP-ZFr">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="artistName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3f-Cy-6xl">
@@ -38,8 +38,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="I3f-Cy-6xl" firstAttribute="leading" secondItem="tOX-XP-ZFr" secondAttribute="leadingMargin" id="z6w-jx-5gi"/>
-                                                <constraint firstItem="I3f-Cy-6xl" firstAttribute="centerY" secondItem="tOX-XP-ZFr" secondAttribute="centerY" id="zxK-jl-vgt"/>
+                                                <constraint firstItem="I3f-Cy-6xl" firstAttribute="leading" secondItem="tOX-XP-ZFr" secondAttribute="leadingMargin" id="7GK-qO-DmQ"/>
+                                                <constraint firstItem="I3f-Cy-6xl" firstAttribute="centerY" secondItem="tOX-XP-ZFr" secondAttribute="centerY" id="iAK-JP-7Su"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -55,19 +55,61 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Iub-Bf-ohP" secondAttribute="bottom" constant="20" symbolic="YES" id="GiT-3c-cI5"/>
-                            <constraint firstItem="Iub-Bf-ohP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="RAB-hV-5ze"/>
-                            <constraint firstItem="Iub-Bf-ohP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cbw-K2-qGw"/>
-                            <constraint firstItem="Iub-Bf-ohP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="q90-l4-6ko"/>
+                            <constraint firstAttribute="trailing" secondItem="Iub-Bf-ohP" secondAttribute="trailing" id="QVh-b3-Whc"/>
+                            <constraint firstItem="Iub-Bf-ohP" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="cZI-Au-xWe"/>
+                            <constraint firstItem="Iub-Bf-ohP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iYd-cG-BaT"/>
+                            <constraint firstItem="Iub-Bf-ohP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="r4c-su-qkx"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="r97-fk-l67"/>
                     <connections>
                         <outlet property="tableView" destination="Iub-Bf-ohP" id="4lf-Sd-8h1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="738" y="431"/>
+            <point key="canvasLocation" x="-56" y="825"/>
+        </scene>
+        <!--Artist View Controller-->
+        <scene sceneID="M7M-b6-VP0">
+            <objects>
+                <viewController storyboardIdentifier="SAArtistViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lNr-Jv-gxG" customClass="SAArtistViewController" customModule="SpotifyProject" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yi4-kn-zC1"/>
+                        <viewControllerLayoutGuide type="bottom" id="f0J-8D-Zdw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cHD-XS-qNM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngD-gF-VB8">
+                                <rect key="frame" x="20" y="20" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ArtistName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUD-k7-u9m">
+                                <rect key="frame" x="235" y="58" width="120" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ngD-gF-VB8" firstAttribute="leading" secondItem="cHD-XS-qNM" secondAttribute="leadingMargin" id="WFa-O4-TNo"/>
+                            <constraint firstItem="LUD-k7-u9m" firstAttribute="top" secondItem="Yi4-kn-zC1" secondAttribute="bottom" constant="38" id="XTI-gw-JbX"/>
+                            <constraint firstItem="LUD-k7-u9m" firstAttribute="leading" secondItem="cHD-XS-qNM" secondAttribute="leading" constant="235" id="i5e-QX-mWf"/>
+                            <constraint firstItem="ngD-gF-VB8" firstAttribute="top" secondItem="Yi4-kn-zC1" secondAttribute="bottom" id="v3d-Eb-3P0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bNU-3r-q0O"/>
+                    <connections>
+                        <outlet property="artistName" destination="LUD-k7-u9m" id="trD-WO-YZ6"/>
+                        <outlet property="backBtn" destination="ngD-gF-VB8" id="ohD-ei-6XB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="INW-wP-pVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653" y="825"/>
         </scene>
     </scenes>
 </document>
