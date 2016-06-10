@@ -12,36 +12,45 @@ protocol communicationControllerArtist {
     func backFromArtist()
 }
 
+
+
 class SAArtistViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var artistBackgroundImg: UIImageView!
     @IBOutlet weak var artistProfileImg: UIImageView!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     var artistDictionary: NSDictionary = [:]
+    var albumArray: NSArray = []
     var delegate: communicationControllerArtist? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         backBtn.addTarget(self, action: #selector(goBackToSearchVC), forControlEvents: .TouchUpInside)
         self.artistName.text = String(artistDictionary.valueForKey("name")!)
         chooseProfileImage(self.artistDictionary.valueForKey("images") as! NSArray)
         createBlurOnBackground()
+        
+        
+        getJSONData(self.artistDictionary.valueForKey("id") as! String)
+
+
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return self.albumArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("HAI!")
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("customSongCell", forIndexPath: indexPath) as! CustomSongCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomAlbumViewCell
+        cell.albumName.text = String(self.albumArray[indexPath.row].valueForKey("name")!)
+        cell.typeOfAlbum.text = String(self.albumArray[indexPath.row].valueForKey("album_type")!)
         
-        cell.albumName.text! = "albumName"
-        cell.songName.text! = "songName"
-        cell.orderForTopTracks.text! = String(indexPath.row)
+        let albumImageArray = self.albumArray[indexPath.row].valueForKey("images") as! NSArray
+        let image: UIImage = chooseAlbumImage(albumImageArray)
+//        print (cell.albumName.text!, image)
+        cell.albumImg.image = image
         
         return cell
     }
@@ -62,14 +71,13 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     
     func chooseProfileImage(imageArray: NSArray) {
         self.artistProfileImg.clipsToBounds = true
-        print(imageArray)
         if (imageArray.count == 0) {
             self.artistProfileImg.image = UIImage(named: "noPhotoAvailableImg.png")
         }
-        //Do not need else becuase if count == 0 it will skip this loop
+
         for picture in imageArray {
             if picture.valueForKey("height") as! NSInteger == picture.valueForKey("width") as! NSInteger {
-                SARequestManager().getArtistImg((picture.valueForKey("url") as! String), completion:{ data in
+                SARequestManager().getImg((picture.valueForKey("url") as! String), completion:{ data in
                     self.artistProfileImg.image =  UIImage(data: data)
                     self.artistBackgroundImg.image = UIImage(data: data)
                 })
@@ -80,6 +88,28 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
                 self.artistBackgroundImg.layer.backgroundColor = UIColor.blackColor().CGColor
             }
         }
+    }
+    
+    func chooseAlbumImage(imageArray: NSArray) -> UIImage {
+        var image: UIImage = UIImage(named: "noPhotoAvailableImg.png")!
+        
+        if (imageArray.count != 0) {
+            SARequestManager().getImg((imageArray[0].valueForKey("url") as! String), completion: { data in
+                 image = UIImage(data: data)!
+            })
+        }
+        return image
+    }
+    
+    func getJSONData(id: String) {
+        SARequestManager().getAlbumOfArtist(id,  completion: {albums in
+            self.albumArray = albums
+        })
+        self.tableView.reloadData()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     override func didReceiveMemoryWarning() {

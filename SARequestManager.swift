@@ -13,6 +13,7 @@ class SARequestManager: NSObject {
      var jsonResult: NSDictionary = [:]
      var artistNames = []
      var artistWebServiceDictionaries = []
+     var albumArray = []
      var imgData: NSData = NSData(bytes: [0xFF, 0xD9] as [UInt8], length: 2)
      
      func searchArtists(searchArtists: String!, completion: (NSArray, NSArray) -> Void) {
@@ -30,7 +31,7 @@ class SARequestManager: NSObject {
           }
         
           request.HTTPMethod = "GET"
-          NSURLSession.sharedSession().dataTaskWithURL(NSURL(string:url)!) {data, response, error in
+          NSURLSession.sharedSession().dataTaskWithURL(request.URL!) {data, response, error in
                     do {
                          self.jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                          self.artistWebServiceDictionaries = self.jsonResult.valueForKey("artists")!.valueForKey("items") as! NSArray
@@ -45,14 +46,14 @@ class SARequestManager: NSObject {
     }
      
      
-     func getArtistImg(url: String, completion: (NSData) -> Void) {
+     func getImg(url: String, completion: (NSData) -> Void) {
           let dataFromUrl = NSURL(string:url)!
           
           NSURLSession.sharedSession().dataTaskWithURL(dataFromUrl) {(data, response, error) in
                
-               
                dispatch_async(dispatch_get_main_queue()) {
                     if NSData(contentsOfURL: dataFromUrl) != nil {
+                         print(dataFromUrl)
                          self.imgData = NSData(contentsOfURL: dataFromUrl)!
                     }
                          
@@ -61,6 +62,31 @@ class SARequestManager: NSObject {
                     }
                     
                     completion(self.imgData)
+               }
+          }.resume()
+     }
+     
+     func getAlbumOfArtist(idOfArtist: String!, completion: (NSArray) -> Void) {
+          let url = self.baseURL + "/v1/artists/" + idOfArtist + "/albums"
+          let request: NSMutableURLRequest = NSMutableURLRequest()
+          request.URL = NSURL(string: url)
+          guard request.URL != nil else {
+               print("URL not valid: \(url)")
+               return
+          }
+          
+          request.HTTPMethod = "GET"
+          NSURLSession.sharedSession().dataTaskWithURL(request.URL!) {data, response, error in
+               do {
+                    self.jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                    self.albumArray = self.jsonResult.valueForKey("items") as! NSArray
+                    dispatch_async(dispatch_get_main_queue()) {
+                         completion(self.albumArray)
+                    }
+                    
+
+               } catch {
+                    print ("failure")
                }
           }.resume()
      }
