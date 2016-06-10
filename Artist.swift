@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class Artist {
+    var followers = 0
+    var id = ""
+    var images = []
+    var name = ""
+    var songsArray = []
+}

@@ -9,12 +9,12 @@
 import Foundation
 
 class SARequestManager: NSObject {
-     let baseURL: String = "https://api.spotify.com"
-     var jsonResult: NSDictionary = [:]
-     var artistNames = []
+     let baseURL = "https://api.spotify.com"
+     var jsonResult = [:]
+     var artistsInfo: [Artist] = []
      var artistWebServiceDictionaries = []
-     var albumArray = []
-     var imgData: NSData = NSData(bytes: [0xFF, 0xD9] as [UInt8], length: 2)
+    var albumArray = []
+     var imgData = NSData(bytes: [0xFF, 0xD9] as [UInt8], length: 2)
      
      func searchArtists(searchArtists: String!, completion: (NSArray, NSArray) -> Void) {
           //Modifying String if there are spaces
@@ -34,15 +34,26 @@ class SARequestManager: NSObject {
           NSURLSession.sharedSession().dataTaskWithURL(request.URL!) {data, response, error in
                     do {
                          self.jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                         self.artistWebServiceDictionaries = self.jsonResult.valueForKey("artists")!.valueForKey("items") as! NSArray
-                         self.artistNames = self.artistWebServiceDictionaries.valueForKey("name") as! NSArray
+                        self.artistWebServiceDictionaries = self.jsonResult.valueForKey("artists")!.valueForKey("items") as! NSArray
+                        
+                        for artistDict in self.artistWebServiceDictionaries {
+                            let artist = Artist()
+                            artist.followers = artistDict.valueForKey("followers")?.valueForKey("total") as! NSInteger
+                            artist.id = artistDict.valueForKey("id") as! String
+                            artist.images = artistDict.valueForKey("images") as! NSArray
+                            artist.name = artistDict.valueForKey("name") as! String
+                            self.artistsInfo.append(artist)
+                        }
+                         print(self.artistsInfo[0].name)
+                    
                          dispatch_async(dispatch_get_main_queue()) {
-                              completion(self.artistNames, self.artistWebServiceDictionaries)
+                              completion(self.artistWebServiceDictionaries, self.artistsInfo)
                          }
                     } catch {
                          print ("failure")
                     }
           }.resume()
+        
     }
      
      

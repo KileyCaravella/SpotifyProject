@@ -11,8 +11,8 @@ import UIKit
 class SASearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, communicationControllerArtist {
 
     @IBOutlet var tableView: UITableView!
-    var artists: NSArray = []
     var artistDictionaries: NSArray = []
+    var artistInfo: [Artist] = []
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
-            return self.artists.count
+            return self.artistInfo.count
         }
         else {
             return 0
@@ -41,7 +41,7 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomSearchViewCell
         if searchController.active && searchController.searchBar.text != "" {
-            cell.artistName.text! = artists[indexPath.row] as! String
+            cell.artistName.text! = artistInfo[indexPath.row].name
         }
         else {
         }
@@ -79,10 +79,11 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     //When searching for artist name
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         if searchController.searchBar.text != "" && searchController.active {
-            SARequestManager().searchArtists(searchController.searchBar.text,  completion: {artistNames, artistWebServiceDictionaries in
-                self.artists = artistNames
+            SARequestManager().searchArtists(searchController.searchBar.text,  completion: {artistWebServiceDictionaries, artistInfo in
                 self.tableView.reloadData()
                 self.artistDictionaries = artistWebServiceDictionaries
+                self.artistInfo = artistInfo as! [Artist]
+                print(self.artistInfo[0])
             })
         }
     }
