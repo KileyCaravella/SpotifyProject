@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF0E2FC71D0B5924003B831B /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E2FC61D0B5924003B831B /* Artist.swift */; };
+		AF0E2FC91D0B593A003B831B /* ArtistSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E2FC81D0B593A003B831B /* ArtistSongs.swift */; };
 		AF36B3091D0924AE00B6E647 /* CustomSongViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF36B3081D0924AE00B6E647 /* CustomSongViewCell.swift */; };
 		AF5CC7CE1D08678D00C312E9 /* SAArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5CC7CD1D08678D00C312E9 /* SAArtistViewController.swift */; };
 		AFA337151D0A074600F019B8 /* noPhotoAvailableImg.png in Resources */ = {isa = PBXBuildFile; fileRef = AFA337141D0A074600F019B8 /* noPhotoAvailableImg.png */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF0E2FC61D0B5924003B831B /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Artist.swift; path = ../Artist.swift; sourceTree = "<group>"; };
+		AF0E2FC81D0B593A003B831B /* ArtistSongs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtistSongs.swift; path = ../ArtistSongs.swift; sourceTree = "<group>"; };
 		AF36B3081D0924AE00B6E647 /* CustomSongViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSongViewCell.swift; sourceTree = "<group>"; };
 		AF5CC7CD1D08678D00C312E9 /* SAArtistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAArtistViewController.swift; sourceTree = "<group>"; };
 		AFA337141D0A074600F019B8 /* noPhotoAvailableImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noPhotoAvailableImg.png; sourceTree = SOURCE_ROOT; };
@@ -98,6 +102,8 @@
 				AFDC2AB61D06762500B3665D /* CustomSearchViewCell.swift */,
 				AF36B3081D0924AE00B6E647 /* CustomSongViewCell.swift */,
 				AFDC2A881D06746000B3665D /* AppDelegate.swift */,
+				AF0E2FC61D0B5924003B831B /* Artist.swift */,
+				AF0E2FC81D0B593A003B831B /* ArtistSongs.swift */,
 				AFDC2ABA1D06854D00B3665D /* SARequestManager.swift */,
 			);
 			name = SpotifyProjectExtras;
@@ -299,7 +305,9 @@
 				AFDC2AB71D06762500B3665D /* CustomSearchViewCell.swift in Sources */,
 				AFDC2A891D06746000B3665D /* AppDelegate.swift in Sources */,
 				AF5CC7CE1D08678D00C312E9 /* SAArtistViewController.swift in Sources */,
+				AF0E2FC91D0B593A003B831B /* ArtistSongs.swift in Sources */,
 				AF36B3091D0924AE00B6E647 /* CustomSongViewCell.swift in Sources */,
+				AF0E2FC71D0B5924003B831B /* Artist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
