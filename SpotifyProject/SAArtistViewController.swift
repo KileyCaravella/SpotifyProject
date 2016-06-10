@@ -12,8 +12,6 @@ protocol communicationControllerArtist {
     func backFromArtist()
 }
 
-
-
 class SAArtistViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -29,13 +27,10 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         backBtn.addTarget(self, action: #selector(goBackToSearchVC), forControlEvents: .TouchUpInside)
         self.artistName.text = String(artistDictionary.valueForKey("name")!)
+        
         chooseProfileImage(self.artistDictionary.valueForKey("images") as! NSArray)
         createBlurOnBackground()
-        
-        
         getJSONData(self.artistDictionary.valueForKey("id") as! String)
-
-
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,7 +44,6 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
         
         let albumImageArray = self.albumArray[indexPath.row].valueForKey("images") as! NSArray
         let image: UIImage = chooseAlbumImage(albumImageArray)
-//        print (cell.albumName.text!, image)
         cell.albumImg.image = image
         
         return cell

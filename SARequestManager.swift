@@ -47,14 +47,13 @@ class SARequestManager: NSObject {
      
      
      func getImg(url: String, completion: (NSData) -> Void) {
-          let dataFromUrl = NSURL(string:url)!
+          let url = NSURL(string:url)!
           
-          NSURLSession.sharedSession().dataTaskWithURL(dataFromUrl) {(data, response, error) in
+          NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
                
                dispatch_async(dispatch_get_main_queue()) {
-                    if NSData(contentsOfURL: dataFromUrl) != nil {
-                         print(dataFromUrl)
-                         self.imgData = NSData(contentsOfURL: dataFromUrl)!
+                    if NSData(contentsOfURL: url) != nil {
+                         self.imgData = NSData(contentsOfURL: url)!
                     }
                          
                     else {
