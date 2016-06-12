@@ -13,5 +13,5 @@ class Artist {
     var id = ""
     var images = []
     var name = ""
-    var songsArray = []
+//    var songInfo: [ArtistSongs] = []
 }

@@ -17,36 +17,52 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var artistBackgroundImg: UIImageView!
     @IBOutlet weak var artistProfileImg: UIImageView!
-    @IBOutlet weak var artistName: UILabel!
+    @IBOutlet weak var artistNameLbl: UILabel!
+    @IBOutlet weak var followersLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
-    var artistDictionary: NSDictionary = [:]
-    var albumArray: NSArray = []
+    
+    var artistInfo = Artist()
+    var albumArray = []
+    var songArray: [ArtistSongs] = []
     var delegate: communicationControllerArtist? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backBtn.addTarget(self, action: #selector(goBackToSearchVC), forControlEvents: .TouchUpInside)
-        self.artistName.text = String(artistDictionary.valueForKey("name")!)
         
-        chooseProfileImage(self.artistDictionary.valueForKey("images") as! NSArray)
+        self.artistNameLbl.text = artistInfo.name
+        self.followersLbl.text = String(artistInfo.followers) + " followers"
+        
+        chooseProfileImage(artistInfo.images)
         createBlurOnBackground()
-        getJSONData(self.artistDictionary.valueForKey("id") as! String)
+        getSongs(artistInfo.id)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.albumArray.count
+        return self.songArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomAlbumViewCell
-        cell.albumName.text = String(self.albumArray[indexPath.row].valueForKey("name")!)
-        cell.typeOfAlbum.text = String(self.albumArray[indexPath.row].valueForKey("album_type")!)
-        
-        let albumImageArray = self.albumArray[indexPath.row].valueForKey("images") as! NSArray
-        let image: UIImage = chooseAlbumImage(albumImageArray)
-        cell.albumImg.image = image
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomSongViewCell
+        cell.songNameLbl.text = self.songArray[indexPath.row].name
+        cell.sequenceLbl.text = String(indexPath.row + 1)
+        cell.albumNameLbl.text = self.songArray[indexPath.row].albumName
+        cell.durationLbl.text = calculateSongDuration(self.songArray[indexPath.row].durationMs)
+        cell.accessoryType = .DisclosureIndicator
         
         return cell
+    }
+    
+    func calculateSongDuration(ms: Int) -> String {
+        let valueInSeconds = ms/1000
+        var minutes = 00
+        var seconds = 00
+        
+        let hours = Int(valueInSeconds/60/60)
+        minutes = Int((valueInSeconds/60/60 - hours) * 60)
+        seconds = Int((valueInSeconds/60 - minutes) * 60)
+        
+        return String(hours) + ":" + String(minutes) + ":" + String(seconds)
     }
     
     func goBackToSearchVC() {
@@ -69,7 +85,7 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
             self.artistProfileImg.image = UIImage(named: "noPhotoAvailableImg.png")
         }
 
-        for picture in imageArray {
+        for picture in artistInfo.images {
             if picture.valueForKey("height") as! NSInteger == picture.valueForKey("width") as! NSInteger {
                 SARequestManager().getImg((picture.valueForKey("url") as! String), completion:{ data in
                     self.artistProfileImg.image =  UIImage(data: data)
@@ -84,22 +100,11 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func chooseAlbumImage(imageArray: NSArray) -> UIImage {
-        var image: UIImage = UIImage(named: "noPhotoAvailableImg.png")!
-        
-        if (imageArray.count != 0) {
-            SARequestManager().getImg((imageArray[0].valueForKey("url") as! String), completion: { data in
-                 image = UIImage(data: data)!
-            })
-        }
-        return image
-    }
-    
-    func getJSONData(id: String) {
-        SARequestManager().getAlbumOfArtist(id,  completion: {albums in
-            self.albumArray = albums
+    func getSongs(id: String) {
+        SARequestManager().getTopSongsOfArtist(id,  completion: {songs in
+            self.songArray = songs as! [ArtistSongs]
+            self.tableView.reloadData()
         })
-        self.tableView.reloadData()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

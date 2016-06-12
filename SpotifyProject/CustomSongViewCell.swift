@@ -8,12 +8,13 @@
 
 import UIKit
 
-class CustomAlbumViewCell: UITableViewCell {
+class CustomSongViewCell: UITableViewCell {
     
-
-    @IBOutlet weak var albumName: UILabel!
-    @IBOutlet weak var albumImg: UIImageView!
-    @IBOutlet weak var typeOfAlbum: UILabel!
+    @IBOutlet weak var songNameLbl: UILabel!
+    @IBOutlet weak var sequenceLbl: UILabel!
+    @IBOutlet weak var explicitLbl: UILabel!
+    @IBOutlet weak var albumNameLbl: UILabel!
+    @IBOutlet weak var durationLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
