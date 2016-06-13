@@ -30,8 +30,8 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         backBtn.addTarget(self, action: #selector(goBackToSearchVC), forControlEvents: .TouchUpInside)
         
-        self.artistNameLbl.text = SAArtistObj.name
-        self.followersLbl.text = String(SAArtistObj.followers) + " followers"
+        artistNameLbl.text = SAArtistObj.name
+        followersLbl.text = String(SAArtistObj.followers) + " followers"
         
         chooseProfileImage(SAArtistObj.images)
         createBlurOnBackground()
@@ -44,18 +44,9 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomSongViewCell
-        setupCell (cell, int: indexPath.row)
-        return cell
-    }
-    
-    func setupCell (cell: CustomSongViewCell, int: Int) {
-        cell.songNameLbl.text = self.SAArtistSongsArray[int].name
-        cell.sequenceLbl.text = String(int + 1)
-        cell.albumNameLbl.text = self.SAArtistSongsArray[int].albumName
-        cell.durationLbl.text = calculateSongDuration(self.SAArtistSongsArray[int].durationMs)
-        
-        if !self.SAArtistSongsArray[int].explicit {
-            
+        cell.setupCellWithArtistSongs(SAArtistSongsArray[indexPath.row])
+        cell.sequenceLbl.text = String(indexPath.row + 1)
+        if (!SAArtistSongsArray[indexPath.row].explicit) {
             cell.albumNameLbl.translatesAutoresizingMaskIntoConstraints = true
             cell.albumNameLbl.frame = CGRect(x: cell.explicitLbl.frame.origin.x,
                                              y: cell.albumNameLbl.frame.origin.y,
@@ -64,26 +55,12 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
             cell.explicitLbl.hidden = true
             cell.bulletForExplicitLbl.hidden = true
         }
-    }
-    
-    func calculateSongDuration(ms: Int) -> String {
-        let valueInSeconds = ms/1000
-        
-        let hours = Int(valueInSeconds/3600)
-        let minutes = Int(valueInSeconds / 60)
-        let seconds = Int(valueInSeconds % 60)
-        
-        if hours != 0 {
-            return String(format: "%02d", hours) + ":" + String(format: "%02d", minutes) + ":" + String(format: "%02d", seconds)
-        }
-            
-        else {
-            return String(format: "%02d", minutes) + ":" + String(format: "%02d", seconds)
-        }
+
+        return cell
     }
     
     func goBackToSearchVC() {
-        self.delegate?.backFromArtist()
+        delegate?.backFromArtist()
     }
     
     func createBlurOnBackground () {
@@ -97,9 +74,9 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     }
     
     func chooseProfileImage(imageArray: NSArray) {
-        self.artistProfileImg.clipsToBounds = true
+        artistProfileImg.clipsToBounds = true
         if (imageArray.count == 0) {
-            self.artistProfileImg.image = UIImage(named: "noPhotoAvailableImg.png")
+            artistProfileImg.image = UIImage(named: "noPhotoAvailableImg.png")
         }
 
         for picture in SAArtistObj.images {
@@ -111,8 +88,8 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
                 break
             }
             else {
-                self.artistProfileImg.image = UIImage(named: "noPhotoAvailableImg.png")
-                self.artistBackgroundImg.layer.backgroundColor = UIColor.blackColor().CGColor
+                artistProfileImg.image = UIImage(named: "noPhotoAvailableImg.png")
+                artistBackgroundImg.layer.backgroundColor = UIColor.blackColor().CGColor
             }
         }
     }
@@ -126,10 +103,6 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }
 

@@ -26,16 +26,16 @@ class SARequestManager: NSObject {
           
           let startingURL = baseURL + "/v1/search?q="
           let url = startingURL + searchArtists + "&type=artist&limit=30"
-          self.SAArtistArray.removeAll()
+          SAArtistArray.removeAll()
         
-          self.request = NSMutableURLRequest()
-          self.request.URL = NSURL(string: url)
-          guard self.request.URL != nil else {
+          request = NSMutableURLRequest()
+          request.URL = NSURL(string: url)
+          guard request.URL != nil else {
                print("URL not valid: \(url)")
                return
           }
         
-          self.request.HTTPMethod = "GET"
+          request.HTTPMethod = "GET"
           NSURLSession.sharedSession().dataTaskWithURL(self.request.URL!) {data, response, error in
                do {
                     self.jsonResultDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
@@ -63,13 +63,13 @@ class SARequestManager: NSObject {
           self.SAArtistSongsArray.removeAll()
 
           let url = self.baseURL + "/v1/artists/" + idOfArtist + "/top-tracks?country=US"
-          self.request.URL = NSURL(string: url)
-          guard self.request.URL != nil else {
+          request.URL = NSURL(string: url)
+          guard request.URL != nil else {
                print("URL not valid: \(url)")
                return
           }
           
-          self.request.HTTPMethod = "GET"
+          request.HTTPMethod = "GET"
           NSURLSession.sharedSession().dataTaskWithURL(self.request.URL!) {data, response, error in
                do {
                     self.jsonResultDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as!NSDictionary

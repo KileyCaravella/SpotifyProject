@@ -19,10 +19,6 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
         setupSearchController()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func setupSearchController () {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -61,14 +57,14 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
         searchController.active = false
         
         let SAArtistDestination = self.storyboard?.instantiateViewControllerWithIdentifier("SAArtistViewController") as! SAArtistViewController
-        
-        let currentCell = tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! CustomSearchViewCell
+        let currentCell = tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!) as! CustomSearchViewCell
         let textFromCell = currentCell.artistName.text!
         
         //Sending the artist's instance to SAArtistVC
         for artistValue in self.SAArtistArray {
             if artistValue.name == textFromCell {
                 SAArtistDestination.SAArtistObj = artistValue
+                break
             }
         }
         
