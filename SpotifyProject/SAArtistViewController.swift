@@ -21,25 +21,25 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var followersLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     
-    var artistInfo = Artist()
+    var SAArtistObj = SAArtist()
     var albumArray = []
-    var songArray: [ArtistSongs] = []
+    var SAArtistSongsArray: [SAArtistSongs] = []
     var delegate: communicationControllerArtist? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backBtn.addTarget(self, action: #selector(goBackToSearchVC), forControlEvents: .TouchUpInside)
         
-        self.artistNameLbl.text = artistInfo.name
-        self.followersLbl.text = String(artistInfo.followers) + " followers"
+        self.artistNameLbl.text = SAArtistObj.name
+        self.followersLbl.text = String(SAArtistObj.followers) + " followers"
         
-        chooseProfileImage(artistInfo.images)
+        chooseProfileImage(SAArtistObj.images)
         createBlurOnBackground()
-        getSongs(artistInfo.id)
+        getSongs(SAArtistObj.id)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.songArray.count
+        return self.SAArtistSongsArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -49,12 +49,12 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     }
     
     func setupCell (cell: CustomSongViewCell, int: Int) {
-        cell.songNameLbl.text = self.songArray[int].name
+        cell.songNameLbl.text = self.SAArtistSongsArray[int].name
         cell.sequenceLbl.text = String(int + 1)
-        cell.albumNameLbl.text = self.songArray[int].albumName
-        cell.durationLbl.text = calculateSongDuration(self.songArray[int].durationMs)
+        cell.albumNameLbl.text = self.SAArtistSongsArray[int].albumName
+        cell.durationLbl.text = calculateSongDuration(self.SAArtistSongsArray[int].durationMs)
         
-        if !self.songArray[int].explicit {
+        if !self.SAArtistSongsArray[int].explicit {
             
             cell.albumNameLbl.translatesAutoresizingMaskIntoConstraints = true
             cell.albumNameLbl.frame = CGRect(x: cell.explicitLbl.frame.origin.x,
@@ -102,7 +102,7 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
             self.artistProfileImg.image = UIImage(named: "noPhotoAvailableImg.png")
         }
 
-        for picture in artistInfo.images {
+        for picture in SAArtistObj.images {
             if picture.valueForKey("height") as! NSInteger == picture.valueForKey("width") as! NSInteger {
                 SARequestManager().getImg((picture.valueForKey("url") as! String), completion:{ data in
                     self.artistProfileImg.image =  UIImage(data: data)
@@ -119,7 +119,7 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     
     func getSongs(id: String) {
         SARequestManager().getTopSongsOfArtist(id,  completion: {songs in
-            self.songArray = songs as! [ArtistSongs]
+            self.SAArtistSongsArray = songs as! [SAArtistSongs]
             self.tableView.reloadData()
         })
     }

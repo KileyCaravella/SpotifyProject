@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ArtistSongs {
+class SAArtistSongs {
     var name = ""
     var previewUrl = ""
     var durationMs = 0

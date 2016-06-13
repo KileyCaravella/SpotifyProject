@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Artist {
+class SAArtist {
     var followers = 0
     var id = ""
     var images = []

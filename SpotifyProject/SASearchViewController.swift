@@ -11,7 +11,7 @@ import UIKit
 class SASearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, communicationControllerArtist {
 
     @IBOutlet var tableView: UITableView!
-    var artistInfoArray: [Artist] = []
+    var SAArtistArray: [SAArtist] = []
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
-            return self.artistInfoArray.count
+            return self.SAArtistArray.count
         }
         else {
             return 0
@@ -47,7 +47,7 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomSearchViewCell
         if searchController.active && searchController.searchBar.text != "" {
-            cell.artistName.text! = artistInfoArray[indexPath.row].name
+            cell.artistName.text! = SAArtistArray[indexPath.row].name
         }
         else {
         }
@@ -66,9 +66,9 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
         let textFromCell = currentCell.artistName.text!
         
         //Sending the artist's instance to SAArtistVC
-        for artistValue in self.artistInfoArray {
+        for artistValue in self.SAArtistArray {
             if artistValue.name == textFromCell {
-                SAArtistDestination.artistInfo = artistValue
+                SAArtistDestination.SAArtistObj = artistValue
             }
         }
         
@@ -76,11 +76,10 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
         self.presentViewController(SAArtistDestination, animated: true, completion: nil)
     }
     
-    //When searching for artist name
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         if searchController.searchBar.text != "" && searchController.active {
             SARequestManager().searchArtists(searchController.searchBar.text,  completion: {artistInfo in
-                self.artistInfoArray = artistInfo as! [Artist]
+                self.SAArtistArray = artistInfo as! [SAArtist]
                 self.tableView.reloadData()
             })
         }
