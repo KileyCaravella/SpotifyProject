@@ -48,19 +48,22 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    
-    
-    
-    }
-    
     func setupCell (cell: CustomSongViewCell, int: Int) {
         cell.songNameLbl.text = self.songArray[int].name
         cell.sequenceLbl.text = String(int + 1)
         cell.albumNameLbl.text = self.songArray[int].albumName
         cell.durationLbl.text = calculateSongDuration(self.songArray[int].durationMs)
-        cell.accessoryType = .DisclosureIndicator
+        
+        if !self.songArray[int].explicit {
+            
+            cell.albumNameLbl.translatesAutoresizingMaskIntoConstraints = true
+            cell.albumNameLbl.frame = CGRect(x: cell.explicitLbl.frame.origin.x,
+                                             y: cell.albumNameLbl.frame.origin.y,
+                                             width: cell.albumNameLbl.frame.width,
+                                             height: cell.albumNameLbl.frame.height)
+            cell.explicitLbl.hidden = true
+            cell.bulletForExplicitLbl.hidden = true
+        }
     }
     
     func calculateSongDuration(ms: Int) -> String {

@@ -14,6 +14,7 @@ class CustomSongViewCell: UITableViewCell {
     @IBOutlet weak var sequenceLbl: UILabel!
     @IBOutlet weak var explicitLbl: UILabel!
     @IBOutlet weak var albumNameLbl: UILabel!
+    @IBOutlet weak var bulletForExplicitLbl: UILabel!
     @IBOutlet weak var durationLbl: UILabel!
     
     override func awakeFromNib() {

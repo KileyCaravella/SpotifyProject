@@ -27,6 +27,11 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+        searchController.searchBar.tintColor = UIColor.blackColor()
+        searchController.searchBar.barTintColor = UIColor.blackColor()
+        searchController.searchBar.backgroundColor = UIColor.blackColor()
+        let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.lightGrayColor()]
+        UIBarButtonItem.appearance().setTitleTextAttributes (cancelButtonAttributes as? [String: AnyObject], forState: UIControlState.Normal)
         tableView.tableHeaderView = searchController.searchBar
     }
     
@@ -87,6 +92,11 @@ class SASearchViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func backFromArtist() {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
 }
 
