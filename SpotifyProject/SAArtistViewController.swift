@@ -46,14 +46,17 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomSongViewCell
         cell.setupCellWithArtistSongs(SAArtistSongsArray[indexPath.row])
         cell.sequenceLbl.text = String(indexPath.row + 1)
+        
         if (!SAArtistSongsArray[indexPath.row].explicit) {
-            cell.albumNameLbl.translatesAutoresizingMaskIntoConstraints = true
-            cell.albumNameLbl.frame = CGRect(x: cell.explicitLbl.frame.origin.x,
-                                             y: cell.albumNameLbl.frame.origin.y,
-                                             width: cell.albumNameLbl.frame.width,
-                                             height: cell.albumNameLbl.frame.height)
-            cell.explicitLbl.hidden = true
+            //explicitLbl becomes albumNameLbl
+            cell.explicitLbl.text = SAArtistSongsArray[indexPath.row].albumName
+            cell.explicitLbl.backgroundColor = UIColor.clearColor()
+            cell.explicitLbl.textColor = UIColor.lightGrayColor()
             cell.bulletForExplicitLbl.hidden = true
+            cell.albumNameLbl.hidden = true
+        } else {
+            //explicitLbl becomes albumNameLbl
+            cell.albumNameLbl.text = SAArtistSongsArray[indexPath.row].albumName
         }
 
         return cell

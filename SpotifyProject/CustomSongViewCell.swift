@@ -29,9 +29,8 @@ class CustomSongViewCell: UITableViewCell {
     }
     
     func setupCellWithArtistSongs (artistSongs:SAArtistSongs) {
-        self.songNameLbl.text = artistSongs.name
-        self.albumNameLbl.text = artistSongs.albumName
-        self.durationLbl.text = calculateSongDuration(artistSongs.durationMs)
+        songNameLbl.text = artistSongs.name
+        durationLbl.text = calculateSongDuration(artistSongs.durationMs)
     }
     
     func calculateSongDuration(ms: Int) -> String {

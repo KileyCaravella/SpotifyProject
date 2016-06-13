@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -155,7 +154,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ifN-7K-sj4" id="LHd-UM-lbu">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SongNameGoesHere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7d-tC-GoY">
@@ -177,9 +176,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" EXPLICIT " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrp-NA-Meg">
-                                                    <rect key="frame" x="45" y="25" width="53" height="12"/>
+                                                    <rect key="frame" x="45" y="25" width="61" height="15"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -193,14 +192,14 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AlbumNameGoesHereWhichIsExtendedForLengthOfLbl" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwu-Lx-53D">
-                                                    <rect key="frame" x="118" y="19" width="325" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AlbumNameGoesHereWhichIsExtendedForLengthOfLbl" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwu-Lx-53D">
+                                                    <rect key="frame" x="122" y="22" width="325" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hj-wx-KR3">
-                                                    <rect key="frame" x="103" y="19" width="11" height="20"/>
+                                                    <rect key="frame" x="110" y="22" width="11" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="11" id="Gue-k8-8BU"/>
                                                     </constraints>
@@ -212,30 +211,22 @@
                                             <constraints>
                                                 <constraint firstItem="L2Z-vG-aYm" firstAttribute="centerY" secondItem="LHd-UM-lbu" secondAttribute="centerY" id="0sI-x1-Xxm"/>
                                                 <constraint firstItem="e7d-tC-GoY" firstAttribute="leading" secondItem="LHd-UM-lbu" secondAttribute="leading" constant="45" id="4Xe-59-fa7"/>
-                                                <constraint firstItem="8hj-wx-KR3" firstAttribute="top" secondItem="LHd-UM-lbu" secondAttribute="topMargin" constant="11" id="5Yp-5I-cHi"/>
-                                                <constraint firstItem="8hj-wx-KR3" firstAttribute="leading" secondItem="wrp-NA-Meg" secondAttribute="trailing" constant="5" id="7Dr-Fj-1GN"/>
+                                                <constraint firstItem="8hj-wx-KR3" firstAttribute="top" secondItem="LHd-UM-lbu" secondAttribute="topMargin" constant="14" id="5Yp-5I-cHi"/>
+                                                <constraint firstItem="8hj-wx-KR3" firstAttribute="leading" secondItem="wrp-NA-Meg" secondAttribute="trailing" constant="4" id="7Dr-Fj-1GN"/>
                                                 <constraint firstItem="wrp-NA-Meg" firstAttribute="leading" secondItem="e7d-tC-GoY" secondAttribute="leading" id="9ZU-Sk-Kx9"/>
                                                 <constraint firstItem="wrp-NA-Meg" firstAttribute="leading" secondItem="vFL-UQ-jA9" secondAttribute="trailing" constant="19" id="B9A-xh-La0"/>
                                                 <constraint firstItem="wrp-NA-Meg" firstAttribute="top" secondItem="e7d-tC-GoY" secondAttribute="bottom" constant="2" id="IYm-CJ-yjG"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8hj-wx-KR3" secondAttribute="bottom" constant="-2.5" id="Oht-Nr-CGo"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8hj-wx-KR3" secondAttribute="bottom" constant="-5.5" id="Oht-Nr-CGo"/>
                                                 <constraint firstItem="L2Z-vG-aYm" firstAttribute="top" secondItem="LHd-UM-lbu" secondAttribute="topMargin" constant="4" id="RMW-wo-EPY"/>
                                                 <constraint firstItem="L2Z-vG-aYm" firstAttribute="trailing" secondItem="LHd-UM-lbu" secondAttribute="trailingMargin" id="ako-xa-PTn"/>
-                                                <constraint firstItem="Wwu-Lx-53D" firstAttribute="leading" secondItem="8hj-wx-KR3" secondAttribute="trailing" constant="3" id="dhT-US-PID"/>
                                                 <constraint firstItem="8hj-wx-KR3" firstAttribute="leading" secondItem="wrp-NA-Meg" secondAttribute="trailing" constant="8" symbolic="YES" id="fRy-GU-lig"/>
                                                 <constraint firstItem="e7d-tC-GoY" firstAttribute="top" secondItem="LHd-UM-lbu" secondAttribute="topMargin" constant="-5" id="fhT-Pw-kWq"/>
-                                                <constraint firstItem="L2Z-vG-aYm" firstAttribute="leading" secondItem="Wwu-Lx-53D" secondAttribute="trailing" constant="83" id="liH-0K-bs9"/>
-                                                <constraint firstItem="Wwu-Lx-53D" firstAttribute="firstBaseline" secondItem="8hj-wx-KR3" secondAttribute="firstBaseline" id="pch-N9-REI"/>
-                                                <constraint firstItem="Wwu-Lx-53D" firstAttribute="baseline" secondItem="8hj-wx-KR3" secondAttribute="baseline" id="pev-59-zFi"/>
-                                                <constraint firstItem="Wwu-Lx-53D" firstAttribute="leading" secondItem="vFL-UQ-jA9" secondAttribute="trailing" constant="92" id="s8f-JZ-IgN"/>
                                                 <constraint firstItem="vFL-UQ-jA9" firstAttribute="baseline" secondItem="L2Z-vG-aYm" secondAttribute="baseline" id="tu5-Zx-Oex"/>
                                                 <constraint firstItem="vFL-UQ-jA9" firstAttribute="top" secondItem="L2Z-vG-aYm" secondAttribute="top" id="xQx-fG-oXr"/>
-                                                <constraint firstItem="Wwu-Lx-53D" firstAttribute="leading" secondItem="wrp-NA-Meg" secondAttribute="trailing" constant="6" id="xcF-Si-T4p"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="fRy-GU-lig"/>
-                                                    <exclude reference="dhT-US-PID"/>
-                                                    <exclude reference="xcF-Si-T4p"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
