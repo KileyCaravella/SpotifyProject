@@ -44,25 +44,39 @@ class SAArtistViewController : UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomSongViewCell
-        cell.songNameLbl.text = self.songArray[indexPath.row].name
-        cell.sequenceLbl.text = String(indexPath.row + 1)
-        cell.albumNameLbl.text = self.songArray[indexPath.row].albumName
-        cell.durationLbl.text = calculateSongDuration(self.songArray[indexPath.row].durationMs)
-        cell.accessoryType = .DisclosureIndicator
-        
+        setupCell (cell, int: indexPath.row)
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    
+    
+    
+    }
+    
+    func setupCell (cell: CustomSongViewCell, int: Int) {
+        cell.songNameLbl.text = self.songArray[int].name
+        cell.sequenceLbl.text = String(int + 1)
+        cell.albumNameLbl.text = self.songArray[int].albumName
+        cell.durationLbl.text = calculateSongDuration(self.songArray[int].durationMs)
+        cell.accessoryType = .DisclosureIndicator
     }
     
     func calculateSongDuration(ms: Int) -> String {
         let valueInSeconds = ms/1000
-        var minutes = 00
-        var seconds = 00
         
-        let hours = Int(valueInSeconds/60/60)
-        minutes = Int((valueInSeconds/60/60 - hours) * 60)
-        seconds = Int((valueInSeconds/60 - minutes) * 60)
+        let hours = Int(valueInSeconds/3600)
+        let minutes = Int(valueInSeconds / 60)
+        let seconds = Int(valueInSeconds % 60)
         
-        return String(hours) + ":" + String(minutes) + ":" + String(seconds)
+        if hours != 0 {
+            return String(format: "%02d", hours) + ":" + String(format: "%02d", minutes) + ":" + String(format: "%02d", seconds)
+        }
+            
+        else {
+            return String(format: "%02d", minutes) + ":" + String(format: "%02d", seconds)
+        }
     }
     
     func goBackToSearchVC() {
