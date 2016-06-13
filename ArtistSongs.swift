@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+class ArtistSongs {
+    var name = ""
+    var previewUrl = ""
+    var durationMs = 0
+    var explicit = false
+    var albumName = ""
+    
+    
+    
+    
+    
+    
+    
+    
+}
