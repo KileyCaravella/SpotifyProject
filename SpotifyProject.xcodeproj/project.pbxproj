@@ -121,7 +121,6 @@
 			children = (
 				AFDC2A871D06746000B3665D /* SpotifyProject */,
 				AFDC2A9C1D06746000B3665D /* SpotifyProjectTests */,
-				AFDC2AA71D06746000B3665D /* SpotifyProjectUITests */,
 				AFDC2A861D06746000B3665D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +152,7 @@
 		AFDC2A9C1D06746000B3665D /* SpotifyProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				AFDC2AA71D06746000B3665D /* SpotifyProjectUITests */,
 				AFDC2A9D1D06746000B3665D /* SpotifyProjectTests.swift */,
 				AFDC2A9F1D06746000B3665D /* Info.plist */,
 			);
@@ -165,7 +165,8 @@
 				AFDC2AA81D06746000B3665D /* SpotifyProjectUITests.swift */,
 				AFDC2AAA1D06746000B3665D /* Info.plist */,
 			);
-			path = SpotifyProjectUITests;
+			name = SpotifyProjectUITests;
+			path = ../SpotifyProjectUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +237,7 @@
 				TargetAttributes = {
 					AFDC2A841D06746000B3665D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = THP5EV5EJ9;
 					};
 					AFDC2A981D06746000B3665D = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -457,11 +459,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SpotifyProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IntrepidPursuits.SpotifyProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -470,11 +475,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SpotifyProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IntrepidPursuits.SpotifyProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

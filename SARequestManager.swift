@@ -72,7 +72,7 @@ class SARequestManager: NSObject {
           request.HTTPMethod = "GET"
           NSURLSession.sharedSession().dataTaskWithURL(self.request.URL!) {data, response, error in
                do {
-                    self.jsonResultDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as!NSDictionary
+                    self.jsonResultDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                     let songJSONArray = self.jsonResultDictionary.valueForKey("tracks") as! NSArray
                     for songInfo in songJSONArray {
                          let song = SAArtistSongs()
@@ -81,6 +81,7 @@ class SARequestManager: NSObject {
                          song.durationMs = songInfo.valueForKey("duration_ms") as! Int
                          song.explicit = songInfo.valueForKey("explicit") as! Bool
                          song.albumName = songInfo.valueForKey("album")!.valueForKey("name") as! String
+                         print(song.albumName)
                          self.SAArtistSongsArray.append(song)
 
                          dispatch_async(dispatch_get_main_queue()) {
